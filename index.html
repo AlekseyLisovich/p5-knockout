@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>HTML Document</title>
+        <link rel="stylesheet" type="text/css" href="assest/style.css">
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js">
+            < script >
+                $(document).ready(function() {
+                    $('.modal-trigger').leanModal({
+                        dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                        opacity: .5, // Opacity of modal background
+                        in_duration: 300, // Transition in duration
+                        out_duration: 200, // Transition out duration
+                        starting_top: '4%', // Starting top style attribute
+                        ending_top: '10%', // Ending top style attribute
+                        ready: function() {
+                            alert('Ready');
+                        }, // Callback for Modal open
+                        complete: function() {
+                                alert('Closed');
+                            } // Callback for Modal close
+                    });
+                });
+        </script>
+
+    </head>
+
+    <body>
+        <h2>Меню</h2>
+        <table class="centered">
+            <thead>
+                <tr>
+                    <th class="mealName">Блюдо</th>
+                    <th>Фотография</th>
+                    <th>Цена</th>
+                    <th>Количество</th>
+                    <th>Есть в наличии</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: seats">
+                <tr>
+                    <td class="mealName" data-bind="text: meal().mealName"></td>
+                    <td data-bind="html: meal().photo"></td>
+                    <td data-bind="text: formattedPrice"></td>
+                    <td class="count">
+                        <input data-bind="value: dishCount" />
+                    </td>
+                    <td data-bind="text: meal().available"></td>
+                    <td>
+                        <button style ="background-color: red;" class="waves-effect waves-light btn" data-bind="click: $root.addPrice">Добавить</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="price">Total price:
+            <div class="price" data-bind="text: totalPrice"></div>
+        </div>
+
+        <button data-target="modal1" class="bottom btn modal-trigger">Подтвердить</button>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+        <script src="scripts/knockout.js"></script>
+        <script src="scripts/knockoutBehavior.js"></script>
+    </body>
+
+</html>
