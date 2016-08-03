@@ -5,31 +5,49 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>HTML Document</title>
         <link rel="stylesheet" type="text/css" href="assest/style.css">
-
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js">
-            < script >
-                $(document).ready(function() {
-                    $('.modal-trigger').leanModal({
-                        dismissible: true, // Modal can be dismissed by clicking outside of the modal
-                        opacity: .5, // Opacity of modal background
-                        in_duration: 300, // Transition in duration
-                        out_duration: 200, // Transition out duration
-                        starting_top: '4%', // Starting top style attribute
-                        ending_top: '10%', // Ending top style attribute
-                        ready: function() {
-                            alert('Ready');
-                        }, // Callback for Modal open
-                        complete: function() {
-                                alert('Closed');
-                            } // Callback for Modal close
-                    });
-                });
-        </script>
-
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     </head>
 
     <body>
-        <h2>Меню</h2>
+        <div class="slider">
+    <ul class="slides">
+      <li>
+        <img src="photo/restoran1.jpg">
+        <div class="caption center-align">
+          <h3>This is our big Tagline!</h3>
+          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+        </div>
+      </li>
+      <li>
+        <img src="photo/restoran2.jpg">
+        <div class="caption left-align">
+          <h3>Left Aligned Caption</h3>
+          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+        </div>
+      </li>
+      <li>
+        <img src="photo/restoran3.jpg">
+        <div class="caption right-align">
+          <h3>Right Aligned Caption</h3>
+          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+        </div>
+      </li>
+      <li>
+        <img src="photo/restoran4.jpg">
+        <div class="caption center-align">
+          <h3>This is our big Tagline!</h3>
+          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+        </div>
+      </li>
+    </ul>
+  </div>
+          <h2>Меню</h2>
+          <div class="price">
+              <div class = "price-text">Total price: </div>
+              <div class = "price-text" data-bind="text: formattedTotalPrice"></div>
+              <button data-target="modal1" class=" btn modal-trigger">Подтвердить</button>
+          </div>
+
         <table class="centered">
             <thead>
                 <tr>
@@ -55,11 +73,35 @@
                 </tr>
             </tbody>
         </table>
-        <div class="price">Total price:
-            <div class="price" data-bind="text: totalPrice"></div>
+        <hr>
+        <div id="modal1" class="modal">
+          <div class="modal-content">
+            <h4>Подтверждение заказа</h4>
+            <p>Вы подтверждаете заказ?</p>
+          </div>
+          <div class="modal-footer">
+            <div class=" modal-action modal-close waves-effect waves-green btn-flat" onclick="Materialize.toast('Отклонено', 2000)">Нет</div>
+            <div class=" modal-action modal-close waves-effect waves-green btn-flat" onclick="Materialize.toast('Подтверждено', 2000)">Да</div>
+          </div>
         </div>
+        <script>
+            $(document).ready(function() {
+                $('.modal-trigger').leanModal({
+                    dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                    opacity: .5, // Opacity of modal background
+                    in_duration: 300, // Transition in duration
+                    out_duration: 200, // Transition out duration
+                    starting_top: '4%', // Starting top style attribute
+                    ending_top: '10%', // Ending top style attribute
+                    ready: function() { alert('Ready'); }, // Callback for Modal open
+                    complete: function() { alert('Closed'); } // Callback for Modal close
+                });
+            });
 
-        <button data-target="modal1" class="bottom btn modal-trigger">Подтвердить</button>
+            $(document).ready(function(){
+                  $('.slider').slider({full_width: true});
+                });
+        </script>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
