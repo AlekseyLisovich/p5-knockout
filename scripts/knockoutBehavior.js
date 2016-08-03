@@ -42,14 +42,21 @@ function ReservationsViewModel() {
         new SeatReservation(self.availableMeals[3]),
         new SeatReservation(self.availableMeals[4]),
         new SeatReservation(self.availableMeals[5]),
-        new SeatReservation(self.availableMeals[6])
+        new SeatReservation(self.availableMeals[6]),
+        new SeatReservation(self.availableMeals[7]),
+        new SeatReservation(self.availableMeals[8]),
+        new SeatReservation(self.availableMeals[9])
     ]);
 
     self.addPrice = function(data) {
         var count = +data.dishCount() * data.meal().price;
         var r = self.totalPrice(self.totalPrice() + count);
-        data.dishCount(data.dishCount() + 1);
+        data.dishCount(+data.dishCount() + 1);
     }
+
+    this.resetClicks = function(data) {
+        self.totalPrice(0);
+    };
 }
 
 ko.applyBindings(new ReservationsViewModel());

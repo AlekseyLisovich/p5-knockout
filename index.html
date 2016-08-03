@@ -45,7 +45,7 @@
           <div class="price">
               <div class = "price-text">Total price: </div>
               <div class = "price-text" data-bind="text: formattedTotalPrice"></div>
-              <button data-target="modal1" class=" btn modal-trigger">Подтвердить</button>
+              <button data-target="modal1" class=" btn modal-trigger" >Подтвердить</button>
           </div>
 
         <table class="centered">
@@ -68,7 +68,7 @@
                     </td>
                     <td data-bind="text: meal().available"></td>
                     <td>
-                        <button style ="background-color: red;" class="waves-effect waves-light btn" data-bind="click: $root.addPrice">Добавить</button>
+                        <button  class="waves-effect waves-light btn" data-bind="click: $root.addPrice">Добавить</button>
                     </td>
                 </tr>
             </tbody>
@@ -80,10 +80,27 @@
             <p>Вы подтверждаете заказ?</p>
           </div>
           <div class="modal-footer">
-            <div class=" modal-action modal-close waves-effect waves-green btn-flat" onclick="Materialize.toast('Отклонено', 2000)">Нет</div>
-            <div class=" modal-action modal-close waves-effect waves-green btn-flat" onclick="Materialize.toast('Подтверждено', 2000)">Да</div>
+            <div class=" modal-action modal-close waves-effect waves-green btn-flat" onclick="Materialize.toast('Отклонено', 2000)" data-bind="click: $root.resetClicks">Нет</div>
+            <div class=" modal-action modal-close waves-effect waves-green btn-flat" onclick="Materialize.toast('Подтверждено', 2000)" data-bind="click: $root.resetClicks">Да</div>
           </div>
         </div>
+
+        <footer class="page-footer teal lighten-2">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">О нас</h5>
+                <p class="grey-text text-lighten-4">Не знаете, где провести сегодняшний вечер? Значит, Вы зашли по адресу. У нас вы найдете всё, чтобы отлично провести вечер.</p>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2016 Materialize, All rights reserved.
+            </div>
+          </div>
+        </footer>
+
         <script>
             $(document).ready(function() {
                 $('.modal-trigger').leanModal({
@@ -93,8 +110,6 @@
                     out_duration: 200, // Transition out duration
                     starting_top: '4%', // Starting top style attribute
                     ending_top: '10%', // Ending top style attribute
-                    ready: function() { alert('Ready'); }, // Callback for Modal open
-                    complete: function() { alert('Closed'); } // Callback for Modal close
                 });
             });
 
