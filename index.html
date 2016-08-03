@@ -4,101 +4,85 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>HTML Document</title>
-        <link rel="stylesheet" type="text/css" href="assest/style.css">
+        <link rel="stylesheet" type="text/css" href="assest/styles/style.css">
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     </head>
 
     <body>
-        <div class="slider">
-    <ul class="slides">
-      <li>
-        <img src="photo/restoran1.jpg">
-        <div class="caption center-align">
-          <h3>This is our big Tagline!</h3>
-          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-        </div>
-      </li>
-      <li>
-        <img src="photo/restoran2.jpg">
-        <div class="caption left-align">
-          <h3>Left Aligned Caption</h3>
-          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-        </div>
-      </li>
-      <li>
-        <img src="photo/restoran3.jpg">
-        <div class="caption right-align">
-          <h3>Right Aligned Caption</h3>
-          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-        </div>
-      </li>
-      <li>
-        <img src="photo/restoran4.jpg">
-        <div class="caption center-align">
-          <h3>This is our big Tagline!</h3>
-          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-        </div>
-      </li>
-    </ul>
-  </div>
-          <h2>Меню</h2>
-          <div class="price">
-              <div class = "price-text">Total price: </div>
-              <div class = "price-text" data-bind="text: formattedTotalPrice"></div>
-              <button data-target="modal1" class=" btn modal-trigger" >Подтвердить</button>
-          </div>
-
-        <table class="centered">
-            <thead>
-                <tr>
-                    <th class="mealName">Блюдо</th>
-                    <th>Фотография</th>
-                    <th>Цена</th>
-                    <th>Количество</th>
-                    <th>Есть в наличии</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: seats">
-                <tr>
-                    <td class="mealName" data-bind="text: meal().mealName"></td>
-                    <td data-bind="html: meal().photo"></td>
-                    <td data-bind="text: formattedPrice"></td>
-                    <td class="count">
-                        <input data-bind="value: dishCount" />
-                    </td>
-                    <td data-bind="text: meal().available"></td>
-                    <td>
-                        <button  class="waves-effect waves-light btn" data-bind="click: $root.addPrice">Добавить</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <hr>
-        <div id="modal1" class="modal">
-          <div class="modal-content">
-            <h4>Подтверждение заказа</h4>
-            <p>Вы подтверждаете заказ?</p>
-          </div>
-          <div class="modal-footer">
-            <div class=" modal-action modal-close waves-effect waves-green btn-flat" onclick="Materialize.toast('Отклонено', 2000)" data-bind="click: $root.resetClicks">Нет</div>
-            <div class=" modal-action modal-close waves-effect waves-green btn-flat" onclick="Materialize.toast('Подтверждено', 2000)" data-bind="click: $root.resetClicks">Да</div>
-          </div>
-        </div>
-
-        <footer class="page-footer teal lighten-2">
-          <div class="container">
-            <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">О нас</h5>
-                <p class="grey-text text-lighten-4">Не знаете, где провести сегодняшний вечер? Значит, Вы зашли по адресу. У нас вы найдете всё, чтобы отлично провести вечер.</p>
-              </div>
+        <header>
+            <nav class="blue lighten-2">
+                <div class="container">
+                    <div class="nav-wrapper">
+                        <a href="index.html" class="brand-logo">Olive Garden</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="slider parallax-container">
+            <div class="parallax">
+                <img src="assest/img/photo/restoran1.jpg">
             </div>
-          </div>
-          <div class="footer-copyright">
+        </div>
+        <div class="content">
+            <h2>Меню</h2>
+            <div class="price">
+                <div class="price-text">Total price: </div>
+                <div class="price-text" data-bind="text: formattedTotalPrice"></div>
+                <button data-target="modal1" class=" btn modal-trigger blue lighten-2">Подтвердить</button>
+            </div>
+
+            <table class="centered">
+                <thead>
+                    <tr>
+                        <th>Фото</th>
+                        <th>Блюдо</th>
+                        <th>Цена</th>
+                        <th>Количество</th>
+                        <th>Есть в наличии</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: seats">
+                    <tr>
+                        <td><img data-bind="attr:{ src:'assest/img/photo/'+meal().photo}" /></td>
+                        <td class="mealName" data-bind="text: meal().mealName"></td>
+                        <td data-bind="text: meal().price"></td>
+                        <td class="count">
+                            <input data-bind="value: dishCount" type="number" max="20" min="1" style="width: 60px;"/>
+                        </td>
+                        <td data-bind="text: availabity"></td>
+                        <td>
+                            <button class="waves-effect waves-light btn blue lighten-2" data-bind="click: $root.addPrice">Добавить</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4>Подтверждение заказа</h4>
+                    <p>Вы подтверждаете заказ?</p>
+                </div>
+                <div class="modal-footer">
+                    <div class=" modal-action modal-close waves-effect waves-green btn-flat" onclick="Materialize.toast('Отклонено', 2000)" data-bind="click: $root.resetClicks">Нет</div>
+                    <div class=" modal-action modal-close waves-effect waves-green btn-flat" onclick="Materialize.toast('Подтверждено', 2000)" data-bind="click: $root.resetClicks">Да</div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="page-footer blue lighten-2">
             <div class="container">
-            © 2016 Materialize, All rights reserved.
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">О нас</h5>
+                        <p class="white-text text-lighten-4">Не знаете, где провести сегодняшний вечер? Значит, Вы зашли по адресу. У нас вы найдете всё, чтобы отлично провести вечер.</p>
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2016 Materialize, All rights reserved.
+                </div>
+            </div>
         </footer>
 
         <script>
@@ -113,15 +97,26 @@
                 });
             });
 
-            $(document).ready(function(){
-                  $('.slider').slider({full_width: true});
+            $(document).ready(function() {
+                $('.slider').slider({
+                    full_width: true
                 });
+
+                $('.parallax').parallax();
+
+                $('input').keyup(function() {
+                    if (this.value > 20)
+                    {
+                        this.value = this.value.substr(0, 1);
+                  }
+                });
+            });
         </script>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-        <script src="scripts/knockout.js"></script>
-        <script src="scripts/knockoutBehavior.js"></script>
+        <script src="libs/knockout.js"></script>
+        <script src="app/knockoutBehavior.js"></script>
     </body>
 
 </html>
