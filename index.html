@@ -28,7 +28,7 @@
             <div class="price">
                 <div class="price-text">Total price: </div>
                 <div class="price-text" data-bind="text: formattedTotalPrice"></div>
-                <button data-target="modal1" class=" btn modal-trigger blue lighten-2">Подтвердить</button>
+                <button data-target="modal1" class="price-button btn modal-trigger blue lighten-2">Подтвердить</button>
             </div>
 
             <table class="centered">
@@ -41,17 +41,17 @@
                         <th>Есть в наличии</th>
                     </tr>
                 </thead>
-                <tbody data-bind="foreach: seats">
+                <tbody data-bind="foreach: foods">
                     <tr>
                         <td><img data-bind="attr:{ src:'assest/img/photo/'+meal().photo}" /></td>
                         <td class="mealName" data-bind="text: meal().mealName"></td>
                         <td data-bind="text: meal().price"></td>
                         <td class="count">
-                            <input data-bind="value: dishCount" type="number" max="20" min="1" style="width: 60px;"/>
+                            <input data-bind="value: dishCount" type="number" max="20" min="0" style="width: 60px;" />
                         </td>
                         <td data-bind="text: availabity"></td>
                         <td>
-                            <button class="waves-effect waves-light btn blue lighten-2" data-bind="click: $root.addPrice">Добавить</button>
+                            <button data-bind="attr: { id: meal().id },  click: $root.addPrice" class=" waves-effect waves-light btn blue lighten-2 button">Добавить</button>
                         </td>
                     </tr>
                 </tbody>
@@ -61,20 +61,37 @@
                 <div class="modal-content">
                     <h4>Подтверждение заказа</h4>
                     <p>Вы подтверждаете заказ?</p>
+                    <table class="centered">
+                        <tbody data-bind="foreach: selectedFood">
+                            <tr>
+                                <td><img data-bind="attr:{ src:'assest/img/photo/'+meal().photo}" /></td>
+                                <td class="mealName" data-bind="text: meal().mealName"></td>
+                                <td data-bind="text: meal().price"></td>
+                                <td>
+                                    <button class="waves-effect waves-light btn blue lighten-2"
+                                    data-bind="click: $root.removeFood">Удалить</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="price-text">Сумма счета: </div>
+                    <div class="price-text" data-bind="text: formattedTotalPrice"></div>
                 </div>
                 <div class="modal-footer">
-                    <div class=" modal-action modal-close waves-effect waves-green btn-flat" onclick="Materialize.toast('Отклонено', 2000)" data-bind="click: $root.resetClicks">Нет</div>
-                    <div class=" modal-action modal-close waves-effect waves-green btn-flat" onclick="Materialize.toast('Подтверждено', 2000)" data-bind="click: $root.resetClicks">Да</div>
+                    <div class=" modal-action modal-close waves-effect waves-green btn-flat"
+                    onclick="Materialize.toast('Отклонено', 2000)" data-bind="click: $root.resetClicks">Нет</div>
+                    <div class=" modal-action modal-close waves-effect waves-green btn-flat"
+                    onclick="Materialize.toast('Подтверждено', 2000)" data-bind="click: $root.resetClicks">Да</div>
                 </div>
             </div>
         </div>
-
         <footer class="page-footer blue lighten-2">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
                         <h5 class="white-text">О нас</h5>
-                        <p class="white-text text-lighten-4">Не знаете, где провести сегодняшний вечер? Значит, Вы зашли по адресу. У нас вы найдете всё, чтобы отлично провести вечер.</p>
+                        <p class="white-text text-lighten-4">Не знаете, где провести сегодняшний вечер?
+                          Значит, Вы зашли по адресу. У нас вы найдете всё, чтобы отлично провести вечер.</p>
                     </div>
                 </div>
             </div>
@@ -105,10 +122,9 @@
                 $('.parallax').parallax();
 
                 $('input').keyup(function() {
-                    if (this.value > 20)
-                    {
+                    if (this.value > 20) {
                         this.value = this.value.substr(0, 1);
-                  }
+                    }
                 });
             });
         </script>

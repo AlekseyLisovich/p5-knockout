@@ -4,28 +4,32 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-
     margin: 0px;
     vertical-align: bottom;
     font-family: 'Roboto', sans-serif;
     font-size: 16pt;
 }
 .content {
-  margin: 0px;
+    font-size: 16pt;
+    margin: 0px;
     text-align: center;
     margin-left: 25%;
     width: 50%;
     background-color: #ffffff;
+    min-width: 600px;
 }
 .price-text {
     float: left;
 }
+.price-button{
+  float:left;
+}
 .price {
     position: absolute;
-    width: 250px;
+    width: 200px;
     height: 100px;
-    top: 62%;
-    left: 85%;
+    top: 65%;
+    left: 5%;
 }
 .count {
     text-align: center;
@@ -34,14 +38,10 @@
 input {
     text-align: center;
 }
-.bottom {
-    position: absolute;
-    top: 70%;
-    left: 85%;
-}
-.btn{
+.button{
   font-size: 10px;
 }
+
 .white-text {
     font-size: 10pt;
 }
@@ -51,8 +51,45 @@ input {
 img {
     width: 130px;
     border-radius: 3px;
+    object-fit: cover;
 }
-.button-add:active {
-    top: .1em;
-    left: .1em;
-    box-shadow: 0 0 0 60px rgba(0, 0, 0, .05) inset;
+
+
+@media screen and (max-width: 1680px) {
+  img{width: 110px;}
+  .content {font-size: 14pt;}
+
+}
+@media screen and (max-width: 1440px) {
+  img{width: 100px;}
+  .content {font-size: 13pt;}
+  .price-button{font-size: 9px;}
+  .button{font-size: 9px;}
+
+}
+@media screen and (max-width: 1280px) {
+  img{width: 90px;}
+  .content {font-size: 12pt;}
+  .button{font-size: 8px;}
+}
+@media screen and (max-width: 1024px) {
+  img{width: 80px;}
+  .button{font-size: 7px;}
+  .price{top: 70%;}
+}
+@media screen and (max-width: 768px) {
+  img{width: 70px;}
+  .content {font-size: 11pt;}
+  .button{font-size: 6px;}
+  .price{top: 50%;}
+}
+@media screen and (max-width: 425px) {
+  img{width: 60px;}
+  .content {font-size: 10pt;}
+  .button{font-size: 5px;}
+  .price-button{
+    position: absolute;
+    top: 150px;
+    width: 150px;
+  }
+}
